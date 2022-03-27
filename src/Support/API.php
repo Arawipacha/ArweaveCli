@@ -276,21 +276,22 @@ class API
                 ]
               ]);
         } catch (ClientException $e) {
-            echo Psr7\Message::toString($e->getRequest());
-            echo Psr7\Message::toString($e->getResponse());
+            $response=$e->getResponse();
+            //$code= $e->code;
+            //echo Psr7\Message::toString($e->getRequest());
+            //echo Psr7\Message::toString($e->getResponse());
         }
 
         
         $status= $response->getStatusCode();
-        $response= $response->getBody();
+        $body=(string) $response->getBody();
 
         if (in_array($status, [404, 410] )) {
             throw new TransactionNotFoundException(sprintf("Arweave API - Unexpected response %s',
-                \n%s\n%s\n",
+                \n%s",
                 $url,
                 $status,
-                $response
-            ));
+            ),$body);
         }
 
         if (!in_array($status, [200, 202] )) {
