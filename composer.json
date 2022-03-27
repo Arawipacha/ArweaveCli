@@ -1,0 +1,27 @@
+{
+    "name": "yakuta/arweavecli",
+    "description": "providers connection arweave",
+    "type": "libray",
+    "require": {
+        "guzzlehttp/guzzle": "^7.4",
+        "phpseclib/phpseclib": "^2.0",
+        "php": "~7.3 || ~8.0",
+        "ext-curl": "*",
+        "ext-mbstring": "*",
+        "ext-gmp": "*",
+        "web-token/jwt-framework": "^2.2.11",
+        "web-token/jwt-core": "^2.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Arweave\\Cli\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ricardo Miguel M Lizarme",
+            "email": "spazioecologico@gmail.com"
+        }
+    ]
+}
