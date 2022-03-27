@@ -5,6 +5,7 @@ namespace Arweave\Cli\Support;
 use Arweave\Cli\Exceptions\TransactionNotFoundException;
 use Arweave\Cli\Support\Transaction;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use Exception;
 
 class API
@@ -267,11 +268,19 @@ class API
         $url = sprintf('%s://%s:%s/%s', $this->protocol, $this->host, $this->port, $path);
     // var_dump($url);
         $client= $this->client;
-        $response= $client->request('GET',$url,[
-          'headers'=>[
-            'Content-Type'=> 'application/json'
-          ]
-        ]);
+
+        try {
+            $response= $client->request('GET',$url,[
+                'headers'=>[
+                  'Content-Type'=> 'application/json'
+                ]
+              ]);
+        } catch (ClientException $e) {
+            echo Psr7\Message::toString($e->getRequest());
+            echo Psr7\Message::toString($e->getResponse());
+        }
+
+        
         $status= $response->getStatusCode();
         $response= $response->getBody();
 
