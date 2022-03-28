@@ -229,12 +229,23 @@ class API
         $url = sprintf('%s://%s:%s/%s', $this->protocol, $this->host, $this->port, $path);
         $client = $this->client;
 
-        $response = $client->request('POST',$url,[
-          'body'=> json_encode($data),
-          'headers'=>[
-            'Content-Type'=>'application/json'
-          ]
-        ]);
+
+        try {
+            $response = $client->request('POST',$url,[
+                'body'=> json_encode($data),
+                'headers'=>[
+                  'Content-Type'=>'application/json'
+                ]
+              ]);
+        } catch (ClientException $e) {
+            $response=$e->getResponse();
+            //$code= $e->code;
+            //echo Psr7\Message::toString($e->getRequest());
+            //echo Psr7\Message::toString($e->getResponse());
+        }
+
+
+        
           
         $status= $response->getStatusCode();
         $response= $response->getBody();

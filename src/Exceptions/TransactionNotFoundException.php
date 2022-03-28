@@ -9,7 +9,7 @@ class TransactionNotFoundException extends Exception
 
     private $body;
 
-    public function __construct($message = null, $body)
+    public function __construct($message = null, $body,$code=0)
     {
         $this->body=$body;
         parent::__construct($message, $code,null);
