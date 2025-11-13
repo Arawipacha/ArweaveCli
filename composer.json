@@ -22,5 +22,15 @@
             "name": "Ricardo Miguel M Lizarme",
             "email": "spazioecologico@gmail.com"
         }
-    ]
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Arweave\\Cli\\Laravel\\ArweaveServiceProvider"
+            ],
+            "aliases": {
+                "ArweaveCli": "Arweave\\Cli\\Laravel\\ArweaveFacade"
+            }
+        }
+    }
 }
