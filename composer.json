@@ -8,6 +8,7 @@
         "php": "^7.3 || ^8.0",
         "ext-curl": "*",
         "ext-mbstring": "*",
+        "ext-gmp": "*",
         "web-token/jwt-framework": "^2.2.11",
         "web-token/jwt-core": "^2.2"
     },
